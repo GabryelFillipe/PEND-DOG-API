@@ -1,28 +1,50 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-header{
+body{
+    background-color: gray;
+}
+header {
     width: 100%;
     display: flex;
     justify-content: center;
     padding-block: 8px;
 }
-input{
+header img{
+    width: 4dvh;
+}
+
+input {
     width: 30dvh;
 }
-main{
+
+main {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
 }
-.container-imagens{
-    background-color: black;
-    width: 80%;
-    height: 80%;
+
+
+.container-imagens {
+    width: 90%;
+    height: 90%;
     color: white;
+    background-color: white;
     display: column;
     columns: 3;
+    box-shadow: 0 0 16px #000;
+    border-radius: 12px;
+    overflow: hidden;
+    padding-left: 8px;
+}
+
+.container-imagens img {
+    width: 24dvh;
+    height: 24vw;
+    gap: 4px;
 }

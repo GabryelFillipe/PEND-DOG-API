@@ -1,37 +1,28 @@
 'use strict'
 
 const botaoBuscar = document.getElementById('buscarRaca')
-
-function pegarRaca() {
-    const raca = document.getElementById('raca').value
-    pegarImagens(raca)
-
-}
 botaoBuscar.addEventListener('click', pegarRaca)
+
+async function pegarRaca() {
+    const raca = document.getElementById('raca').value
+    const dados = await pegarImagens(raca)
+    dados.forEach(criarGaleria)
+}
 
 async function pegarImagens(raca) {
     const url = `https://dog.ceo/api/breed/${raca}/images`
     const response = await fetch(url)
     const imagens = await response.json()
     console.log(imagens.message)
-    carregarGaleria(imagens)
-    return imagens
+    return imagens.message
 }
 
-function criarGaleria(pegarImagens) {
+function criarGaleria(dados) {
     const galeria = document.getElementById('containerImagens')
 
     const imagemCachorro = document.createElement('img')
-    imagemCachorro.src = imagens.message
+    imagemCachorro.src = dados
 
     galeria.appendChild(imagemCachorro)
+    
 }
-function carregarGaleria(pegarImagens) {
-    imagens.forEach(criarGaleria)
-
-}
-
-
-
-
-
