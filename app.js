@@ -5,8 +5,15 @@ botaoBuscar.addEventListener('click', pegarRaca)
 
 async function pegarRaca() {
     const raca = document.getElementById('raca').value
+
+    const galeria = document.getElementById('containerImagens')
+
+    galeria.replaceChildren()
+
     const dados = await pegarImagens(raca)
-    dados.forEach(criarGaleria)
+    dados.forEach(urlDaImagem => {
+        criarGaleria(urlDaImagem, galeria)
+    })
 }
 
 async function pegarImagens(raca) {
@@ -17,12 +24,11 @@ async function pegarImagens(raca) {
     return imagens.message
 }
 
-function criarGaleria(dados) {
-    const galeria = document.getElementById('containerImagens')
+function criarGaleria(url, container) {
 
     const imagemCachorro = document.createElement('img')
-    imagemCachorro.src = dados
+    imagemCachorro.src = url
 
-    galeria.appendChild(imagemCachorro)
-    
+    container.appendChild(imagemCachorro)
+
 }
