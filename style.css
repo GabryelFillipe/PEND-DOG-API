@@ -19,6 +19,10 @@ header img{
 input {
     width: 30dvh;
 }
+header button{
+    border-radius: 0 10px 10px 0;
+    background-color: rgba(0, 0, 0, 0.541);
+}
 
 main {
     position: relative;
