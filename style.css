@@ -30,13 +30,10 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
+    margin-top: 16px;
 }
-
-
 .container-imagens {
-    width: 90%;
-    height: 90%;
+    width: 100%;
     color: white;
     background-color: white;
     display: column;
@@ -49,5 +46,7 @@ main {
 
 .container-imagens img {
     width: 100%;
-    
+    margin-block: 8px;
+    box-shadow: 0 0 16px #000;
+    border-radius: 12px;
 }

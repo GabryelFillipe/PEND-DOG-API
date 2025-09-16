@@ -5,23 +5,46 @@ botaoBuscar.addEventListener('click', pegarRaca)
 
 async function pegarRaca() {
     const raca = document.getElementById('raca').value
-
     const galeria = document.getElementById('containerImagens')
+    const main = document.getElementById('main')
 
     galeria.replaceChildren()
 
+    const limparErro = main.querySelector('.mensagem-erro')
+
+
+    if (limparErro) {
+        limparErro.remove()
+    }
+
     const dados = await pegarImagens(raca)
-    dados.forEach(urlDaImagem => {
-        criarGaleria(urlDaImagem, galeria)
-    })
+
+    if (Array.isArray(dados)) {
+        dados.forEach(urlDaImagem => {
+            criarGaleria(urlDaImagem, galeria)
+        })
+
+    } else {
+        const mensagemErro = document.createElement('h2')
+        mensagemErro.textContent = dados
+        mensagemErro.classList.add('mensagem-erro')
+        main.appendChild(mensagemErro)
+    }
 }
 
 async function pegarImagens(raca) {
     const url = `https://dog.ceo/api/breed/${raca}/images`
     const response = await fetch(url)
-    const imagens = await response.json()
-    console.log(imagens.message)
-    return imagens.message
+    const data = await response.json()
+
+    if (data.status === 'success') {
+        console.log(data.message)
+        return data.message
+    } else {
+        console.error(data.message)
+        return 'Raça não encontrada. Tente novamente.'
+    }
+
 }
 
 function criarGaleria(url, container) {
